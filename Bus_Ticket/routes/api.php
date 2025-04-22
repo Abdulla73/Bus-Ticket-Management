@@ -12,22 +12,19 @@ Route::post('verify-otp', [Registration::class, 'verifyOtp']);
 Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout']);
 
-Route::post('buses', [BusController::class, 'store']);           // Add Bus
-Route::put('buses/{id}', [BusController::class, 'update']);       // Update Bus
-Route::delete('buses/{id}', [BusController::class, 'destroy']);   // Delete Bus
-Route::get('buses', [BusController::class, 'index']);             // List/Search Buses
-Route::get('buses/{id}', [BusController::class, 'show']);         // Show Single Bus
+Route::middleware(['auth:api', 'isAdmin'])->group(function () {
+    Route::post('buses', [BusController::class, 'store']);
+    Route::put('buses/{id}', [BusController::class, 'update']);
+    Route::delete('buses/{id}', [BusController::class, 'destroy']);
+    Route::get('buses', [BusController::class, 'index']);
+    Route::get('buses/{id}', [BusController::class, 'show']);
+    Route::post('tickets', [TicketController::class, 'store']);
+    Route::put('tickets/{id}', [TicketController::class, 'update']);
+    Route::get('tickets', [TicketController::class, 'index']);
+    Route::get('bookings', [BookingController::class, 'index']);
+});
 
-// TICKET Routes
-Route::post('tickets', [TicketController::class, 'store']);       // Add Ticket
-Route::put('tickets/{id}', [TicketController::class, 'update']);  // Update Ticket
-Route::get('tickets', [TicketController::class, 'index']);        // List/Search Tickets
 Route::get('tickets/{id}', [TicketController::class, 'show']);
 Route::get('search-available-buses', [TicketController::class, 'searchAvailableBuses']);
-   // Show Single Ticket
-
-// BOOKING Routes
-Route::post('book-seat', [BookingController::class, 'store']);    // Customer books seat
-Route::get('bookings', [BookingController::class, 'index']);
+Route::post('book-seat', [BookingController::class, 'store']);
 Route::get('search-bookings/{userId}', [BookingController::class, 'searchByUser']);
-

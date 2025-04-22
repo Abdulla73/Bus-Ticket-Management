@@ -27,7 +27,12 @@ class LoginController extends Controller
             return response()->json(['message' => 'Your account is not active. Please verify your email.'], 403);
         }
 
-        $token = JWTAuth::fromUser($user);
+        $customClaims = [
+            'email' => $user->email,
+            'role' => $user->role,
+        ];
+
+        $token = JWTAuth::claims($customClaims)->fromUser($user);
 
         session(['user_email' => $user->email]);
 
@@ -35,9 +40,11 @@ class LoginController extends Controller
 
         return response()->json([
             'message' => $welcomeMessage,
-            'token' => $token
+            'token' => $token,
+            'role' => $user->role
         ], 200);
     }
+
 
     public function logout(Request $request)
     {
