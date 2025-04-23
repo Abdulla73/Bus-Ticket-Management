@@ -12,11 +12,11 @@
 3. Set up your backend (backend/) following Laravel's installation steps.
 4. Set up your frontend (frontend/) and run it using your preferred package manager (npm or yarn).
 5. Run composer update and npm update.
-6. Run both ends at the same time.
-7. Sometimes it can take a long time to open it in the browser.
 8. Configure your .env file for the backend.
 9. Database credentials
 10. Mail credentials (for OTP functionality). This is important!. Without proper mail setup, you can not verify a  user.
+11. Run both ends at the same time.
+12. Sometimes it can take a long time to open it in the browser.
 
 #Features
 1. User Registration:
