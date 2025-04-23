@@ -1,0 +1,53 @@
+
+.container {
+    max-width: 1200px;
+  }
+  
+ 
+  h1 {
+    font-weight: 800;
+    font-size: 3rem;
+  }
+  
+
+  .btn-sm {
+    font-size: 0.9rem;
+    padding: 5px 15px;
+  }
+  
+ 
+  .user-email {
+    font-size: 1rem;
+  }
+  
+
+  .carousel-inner img {
+    height: 400px;
+    object-fit: cover;
+  }
+  
+ 
+  .card {
+    border-radius: 15px;
+    border: none;
+  }
+  
+
+  .list-group-item {
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+  }
+  .list-group-item:hover {
+    background-color: #e2e6ea;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+    .carousel-inner img {
+      height: 250px;
+    }
+  }
+  

@@ -17,7 +17,6 @@ class TicketController extends Controller
 
         $bus = Bus::findOrFail($request->bus_id);
 
-        // Check if a ticket already exists for the bus
         if ($bus->ticket) {
             return response()->json(['message' => 'Ticket already exists for this bus.'], 400);
         }
@@ -58,7 +57,6 @@ class TicketController extends Controller
         return response()->json($ticket);
     }
 
-
     public function searchAvailableBuses(Request $request)
     {
         $request->validate([
@@ -81,11 +79,12 @@ class TicketController extends Controller
                     'available_seats' => $bus->ticket->available_seats,
                     'departure_time' => $bus->departure_time,
                     'seat_price' => $bus->ticket->price,
+                    'ticket_id' => $bus->ticket->id,
                 ];
             });
 
         if ($buses->isEmpty()) {
-            return response()->json(['message' => 'No buses found for your search. 🥺'], 404);
+            return response()->json(['message' => 'No buses found for your search. '], 404);
         }
 
         return response()->json([

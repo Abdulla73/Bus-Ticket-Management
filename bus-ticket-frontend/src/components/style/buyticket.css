@@ -1,0 +1,25 @@
+.seat-checkbox {
+    display: none;
+  }
+  
+  .seat-label {
+    background-color: #007bff; 
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+    min-width: 50px;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  .seat-label.booked {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .seat-checkbox:checked + .seat-label {
+    background-color: #28a745; 
+  }
+  

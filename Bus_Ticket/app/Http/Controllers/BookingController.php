@@ -46,13 +46,14 @@ class BookingController extends Controller
 
     public function index()
     {
-        $bookings = Booking::with('ticket', 'user')->get();
+        $bookings = Booking::select('ticket_id', 'seat_number')->get();
 
         return response()->json([
-            'message' => 'All bookings retrieved successfully!',
+            'message' => 'Ticket ID and Seat Number retrieved successfully!',
             'bookings' => $bookings
         ]);
     }
+
 
     public function searchByUser($userId)
     {
@@ -77,6 +78,21 @@ class BookingController extends Controller
         return response()->json([
             'message' => 'Bookings found!',
             'bookings' => $bookings
+        ]);
+    }
+
+    public function getSeatsByTicketId($id)
+    {
+        $seats = Booking::where('ticket_id', $id)
+            ->pluck('seat_number');
+
+        if ($seats->isEmpty()) {
+            return response()->json(['message' => 'No seats found for this ticket ID.'], 404);
+        }
+
+        return response()->json([
+            'message' => 'Seats retrieved successfully!',
+            'seats' => $seats
         ]);
     }
 }

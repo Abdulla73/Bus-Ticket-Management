@@ -1,8 +1,8 @@
-// src/components/Auth/VerifyOTP.jsx
+
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../style/login.css'; 
+import '../style/login.css';
 
 const VerifyOTP = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const VerifyOTP = () => {
         otp_code: otp,
       });
       alert(res.data.message);
-      localStorage.removeItem('email'); // Clear email after verifying
+      localStorage.removeItem('email'); 
       navigate('/login');
     } catch (err) {
       setError(err.response?.data?.message || 'OTP verification failed. Try again.');

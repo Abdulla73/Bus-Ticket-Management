@@ -41,8 +41,20 @@ class LoginController extends Controller
         return response()->json([
             'message' => $welcomeMessage,
             'token' => $token,
-            'role' => $user->role
+            'role' => $user->role,
+            'user_mail' => $user->email,
+            'user_id' => $user->id,
         ], 200);
+    }
+
+    public function sessionUser(Request $request)
+    {
+        $userEmail = session('user_email');
+        if ($userEmail) {
+            return response()->json(['user_email' => $userEmail], 200);
+        } else {
+            return response()->json(['message' => 'No active session'], 401);
+        }
     }
 
 

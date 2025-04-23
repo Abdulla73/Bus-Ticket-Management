@@ -21,10 +21,13 @@ Route::middleware(['auth:api', 'isAdmin'])->group(function () {
     Route::post('tickets', [TicketController::class, 'store']);
     Route::put('tickets/{id}', [TicketController::class, 'update']);
     Route::get('tickets', [TicketController::class, 'index']);
-    Route::get('bookings', [BookingController::class, 'index']);
+
 });
 
+Route::get('/session-user', [LoginController::class, 'sessionUser']);
+Route::get('bookings', [BookingController::class, 'index']);
 Route::get('tickets/{id}', [TicketController::class, 'show']);
 Route::get('search-available-buses', [TicketController::class, 'searchAvailableBuses']);
 Route::post('book-seat', [BookingController::class, 'store']);
 Route::get('search-bookings/{userId}', [BookingController::class, 'searchByUser']);
+Route::get('/tickets/{id}/seats', [BookingController::class, 'getSeatsByTicketId']);
